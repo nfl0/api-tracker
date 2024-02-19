@@ -25,6 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+function displayMessage(message, isError = false) {
+  const messageContainer = document.getElementById('messageContainer');
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+  if (isError) {
+    messageElement.style.color = 'red';
+  }
+  messageContainer.appendChild(messageElement);
+}
+
 function testCustomApi(apiUrl) {
   fetch(apiUrl)
     .then(response => response.json())
@@ -35,15 +45,15 @@ function testCustomApi(apiUrl) {
         // Prompt user to select which key represents the coin price
         const coinPriceKey = prompt(`Found potential price keys: ${coinPriceKeys.join(', ')}. Please select the key that represents the coin price.`);
         if (coinPriceKey && coinPriceKeys.includes(coinPriceKey)) {
-          alert(`Custom API URL test successful. Coin price key set to: ${coinPriceKey}`);
+          displayMessage(`Custom API URL test successful. Coin price key set to: ${coinPriceKey}`);
         } else {
-          alert('Invalid coin price key selected.');
+          displayMessage('Invalid coin price key selected.', true);
         }
       } else {
-        alert('No numeric values found in API response. Please check the custom API URL.');
+        displayMessage('No numeric values found in API response. Please check the custom API URL.', true);
       }
     })
     .catch(error => {
-      alert(`Error testing custom API URL: ${error}`);
+      displayMessage(`Error testing custom API URL: ${error}`, true);
     });
 }
