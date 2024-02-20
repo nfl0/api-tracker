@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    color: #fff; /* Set text color to white */
+    background-color: #333; /* Set background color to dark gray */
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #444; /* Set container background color to slightly lighter gray */
+    padding: 20px; /* Add padding for better readability */
+}
+
+h2 {
+    color: #fff; /* Set heading color to white */
+    margin-top: 0;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fff; /* Set label color to white */
+}
+
+input[type="text"],
+textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #555; /* Set input background color to darker gray */
+    color: #fff; /* Set input text color to white */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.key-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #555; /* Set key container background color to darker gray */
+    color: #fff; /* Set key container text color to white */
+}
+
+.key-button {
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+}
+
+.key-button:hover {
+    background-color: #0056b3;
+}
+
+.toggle-indicator::before {
+    content: '+';
+    color: #007bff;
+    cursor: pointer;
+}
+
+#valueDisplay {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #555; /* Set display background color to darker gray */
+    color: #fff; /* Set display text color to white */
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    color: #fff; /* Set loading text color to white */
+}
+
+.loading::after {
+    content: 'Loading...';
+    display: inline-block;
+    margin-left: 5px;
+}

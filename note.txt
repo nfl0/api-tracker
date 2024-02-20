@@ -1,0 +1,6 @@
+Name: API Tracker Badge
+Description: API Tracker Badge is a handy Chrome extension that allows you to effortlessly track data from any API directly on your browser's badge. Whether you want to monitor the temperature, stock prices, or any other data, simply input the API URL, select the desired key (e.g., temperature), and the extension will display the live value on the badge. Stay updated with real-time information without even opening a tab!
+
+
+Name: API Badge Tracker
+Description: API Badge Tracker is a convenient Chrome extension that lets you easily monitor data from APIs right on your browser's badge. Whether you're tracking the temperature, stock prices, or any other data, simply input the API URL, select the desired key, and watch as the badge updates with real-time information. Stay informed at a glance with API Badge Tracker!

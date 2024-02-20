@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Tester</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>API Tester</h1>
+    <form id="api-form">
+      <label for="api-url">Enter API URL:</label>
+      <input type="text" id="api-url" placeholder="https://" />
+      <button type="submit" id="test-api-btn">Test</button>
+    </form>
+    <div id="response-container">
+      <h2 id="response-title">Response:</h2>
+      <div id="response-data"></div>
+    </div>
+    <div id="key-selection-container">
+      <h2 id="key-selection-title">Key Selection:</h2>
+      <div id="key-selection"></div>
+    </div>
+    <div id="result-container">
+      <h2 id="result-title">Result:</h2>
+      <textarea id="result"></textarea>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

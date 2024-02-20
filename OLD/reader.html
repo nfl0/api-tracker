@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Result Reader</title>
+<script>
+    function fetchAndDisplayValue() {
+        var resultString = document.getElementById("resultObject").value;
+        try {
+            var resultObject = JSON.parse(resultString);
+            var apiUrl = resultObject.url;
+            var key = resultObject.key;
+            
+            // Fetch data from the API URL
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var value = getValueByKey(data, key);
+                    if (value !== undefined) {
+                        console.log("Value of the key:", value);
+                        document.getElementById("keyValue").textContent = value;
+                    } else {
+                        console.error("Key not found in response data");
+                        document.getElementById("keyValue").textContent = "Key not found";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    document.getElementById("keyValue").textContent = "Error fetching data";
+                });
+        } catch (error) {
+            console.error("Error parsing JSON:", error);
+            document.getElementById("keyValue").textContent = "Error parsing JSON";
+        }
+    }
+
+    function getValueByKey(data, key) {
+        var keys = key.split(".");
+        var value = data;
+        for (var i = 0; i < keys.length; i++) {
+            if (value.hasOwnProperty(keys[i])) {
+                value = value[keys[i]];
+            } else {
+                return undefined;
+            }
+        }
+        return value;
+    }
+</script>
+</head>
+<body>
+    <h2>API Result Reader</h2>
+    <label for="resultObject">Paste Result Object:</label><br>
+    <textarea id="resultObject" rows="5" cols="50"></textarea><br><br>
+    <button onclick="fetchAndDisplayValue()">Fetch and Display Value</button><br><br>
+    <div>
+        <label for="keyValue">Value of the Key:</label>
+        <span id="keyValue"></span>
+    </div>
+</body>
+</html>
