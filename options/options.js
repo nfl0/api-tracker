@@ -3,6 +3,22 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('saveBtn').addEventListener('click', saveResult);
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Load data from local storage
+    chrome.storage.local.get(['result'], function (result) {
+        if (result && result.result) {
+            document.getElementById("apiUrl").value = result.result.url;
+            document.getElementById("result").value = JSON.stringify(result.result);
+        } else {
+            // Fill the API URL input with the test URL if storage is empty
+            document.getElementById("apiUrl").value = "https://api.coingecko.com/api/v3/simple/price?ids=zcash&vs_currencies=usd";
+        }
+    });
+
+    document.getElementById('testApiBtn').addEventListener('click', testAPI);
+    document.getElementById('saveBtn').addEventListener('click', saveResult);
+});
+
 function testAPI() {
     var url = document.getElementById("apiUrl").value;
     var xhr = new XMLHttpRequest();
