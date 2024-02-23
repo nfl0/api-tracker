@@ -52,14 +52,19 @@ We welcome your feedback and suggestions!
 
 [BETA] API Tracker Badge is a handy Chrome extension that allows you to effortlessly track data from any API directly on your browser's badge. Whether you want to monitor the temperature, stock prices, or any other data, simply input the API URL, select the desired key (e.g., temperature), and the extension will display the live value on the badge. Stay updated with real-time information without even opening a tab!
 
+Road to v1
 todo:
     - add support for APIs that return plain text and not json
     - add link to the useful public APIs repo: ```https://publicapis.dev/category/cryptocurrency```
     - [options] custom refresh timer + inform the user about api call limits and remind him to check the api docs for more info. default refresh time is 30 seconds
+    - [options] [options-config] feat: user picks between "click to refresh" (maybe useful for long refresh interval setups) or "open options". (add step 3/3 select behavior div?)
     - [options] show response time (eye candy)
     - [options] add support for POST params
     - [options] add better CORS detection
     - [options] favorite APIs
     - [options] add XML support
     - add listener to open options page via extension click?
-    - [background] feat: click on badge to open the options page
+    - [background] fix: improve the number formater. why show 2 when can show 1.92 (less than the 4 characters limit)
+     - [background] fix: console.error
+
+     - LOGO!

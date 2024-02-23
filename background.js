@@ -46,30 +46,57 @@ function updateBadgeText(value) {
   chrome.action.setBadgeText({ text: badgeText });
 }
 
-
-
 // Function to truncate and format numerical values within 4 characters
 function truncateNumber(number) {
   let truncatedText = number.toString();
   if (truncatedText.length > 4) {
     // Truncate and format the number to fit within 4 characters
-    const formattedNumber = Math.abs(number) >= 1.0e+9
-      ? (Math.abs(number) / 1.0e+9).toFixed(1) + 'B'
-      : Math.abs(number) >= 1.0e+6
-        ? (Math.abs(number) / 1.0e+6).toFixed(1) + 'M'
-        : Math.abs(number) >= 1.0e+3
-          ? (Math.abs(number) / 1.0e+3).toFixed(1) + 'K'
-          : Math.abs(number).toFixed(0);
-    // Truncate to 4 characters
-    truncatedText = formattedNumber.slice(0, 4);
+    const absNumber = Math.abs(number);
+    if (absNumber >= 1.0e+9) {
+      truncatedText = (absNumber / 1.0e+9).toFixed(1) + 'B';
+    } else if (absNumber >= 1.0e+6) {
+      truncatedText = (absNumber / 1.0e+6).toFixed(1) + 'M';
+    } else if (absNumber >= 1.0e+3) {
+      truncatedText = (absNumber / 1.0e+3).toFixed(1) + 'K';
+    } else {
+      truncatedText = absNumber.toFixed(2);
+    }
+    // Truncate to fit within 4 characters
+    if (truncatedText.length > 4) {
+      truncatedText = truncatedText.slice(0, 4);
+    }
   }
   return truncatedText;
 }
 
-// Function to truncate strings and booleans to 4 characters
+// Function to truncate strings and booleans to expected formats
 function truncateString(value) {
-  return value.length > 4 ? value.slice(0, 4) + '...' : value;
+  if (!isNaN(value) || /^\d+(\.\d+)?$/.test(value)) { // Check if it's numeric
+    const numericValue = parseFloat(value);
+    if (Math.abs(numericValue) >= 1.0e+6) {
+      return truncateNumber(numericValue);
+    } else {
+      const stringValue = numericValue.toFixed(2);
+      return stringValue.length > 4 ? stringValue.slice(0, 4) : stringValue;
+    }
+  } else {
+    // Check for specific cases
+    if (/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(value)) {
+      return 'IP';
+    } else if (/^[a-fA-F0-9]{32}$/.test(value)) {
+      return 'Hash';
+    } else if (value === 'true' || value === 'false') {
+      return value === 'true' ? 'true' : 'not';
+    } else if (Array.isArray(value)) {
+      return 'Arr';
+    } else if (typeof value === 'object') {
+      return 'Obj';
+    } else {
+      return 'Text';
+    }
+  }
 }
+
 
 // Function to fetch data from the API
 function fetchData(url, key) {
